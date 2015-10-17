@@ -1227,13 +1227,13 @@ PVRMMap(struct file* pFile, struct vm_area_struct* ps_vma)
 
 #if !defined(SUPPORT_DRI_DRM_EXT)
         /* Pass unknown requests onto the DRM module */
-        return drm_mmap(pFile, ps_vma);
+        return drm_gem_mmap(pFile, ps_vma);
 #else
         /*
          * Indicate to caller that the request is not for us.
          * Do not return this error elsewhere in this function, as the
          * caller may use it as a clue as to whether the mmap request
-         * should be passed on to another component (e.g. drm_mmap).
+         * should be passed on to another component (e.g. drm_gem_mmap).
          */
         return -ENOENT;
 #endif
